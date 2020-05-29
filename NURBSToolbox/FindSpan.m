@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 idx = zeros(size(pts));
 for i = 1 : numel(pts)
-    if (pts(i) == KntVect(n + 1))
+    if ( norm(pts(i)-KntVect(n + 1))<1.0e-6 )   %Special case
         idx(i) = n;
         return
     end
@@ -44,7 +44,7 @@ for i = 1 : numel(pts)
     high = n + 1;
     mid = floor((low + high)/2);
     while(pts(i) < KntVect(mid) ||...
-            pts(i) >= KntVect(mid + 1))
+            pts(i) >= KntVect(mid + 1)) 
         if(pts(i) < KntVect(mid))
             high = mid;
         else
